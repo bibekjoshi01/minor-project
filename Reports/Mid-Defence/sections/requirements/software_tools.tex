@@ -1,0 +1,35 @@
+\subsection{Software Tools}
+
+This project relies on a combination of development environments, libraries, and simulation tools to implement, test, and validate the autonomous directional antenna system. The software stack has been chosen for compatibility with the ESP32 microcontroller, real-time signal processing, and lightweight reinforcement learning algorithms.
+
+\subsubsection{Arduino IDE}
+
+The Arduino Integrated Development Environment (IDE) is used for programming and deploying firmware to the ESP32 DevKit microcontroller. It provides a user-friendly interface, built-in support for ESP32 libraries, and easy integration with peripherals such as PWM motors, ADC sensors, and Wi-Fi modules. 
+The IDE allows rapid prototyping and testing of algorithms, including RSSI acquisition and servo motor control. Additionally, it supports serial communication for debugging and real-time monitoring.
+
+
+\subsubsection{Python}
+
+Python Programming Language is used for data analysis, simulation, and reinforcement learning experiments. Libraries such as NumPy, Matplotlib, and Pandas allow signal processing, visualization of RSSI data, and testing RL policies before deployment on the microcontroller. Python also facilitates post-processing of logged data to evaluate system performance under different environmental conditions.
+
+\subsubsection{MicroPython IDE}
+
+For experiments using MicroPython on ESP32, Thonny IDE can be employed to run and debug Python scripts directly on the microcontroller. It provides a lightweight interface for interactive development, testing algorithms in real-time, and quick iteration of code without full recompilation.
+
+\subsubsection{Simulation Tools}
+Simulink is a graphical modelling environment for designing, simulating, and analyzing dynamic systems, part of the MATLAB ecosystem, used in Model-Based Design for complex systems like communications. It is used to model the antenna orientation system, evaluate control algorithms, and simulate RSSI feedback in a controlled virtual environment. This allows verification of control strategies and RL-based methods before deployment on physical hardware.
+
+\subsubsection{Version Control}
+
+Git and GitHub are used for version control of all source code, configuration files, and documentation. It ensures proper tracking of changes, collaboration among team members, and maintains a history of experimental setups for reproducibility.
+
+\subsubsection{Trello}
+
+Trello is used as a project management and collaboration tool. 
+It helps organize tasks, assign responsibilities, and track progress of individual modules and team milestones. 
+Using Trello boards, lists, and cards, the team can coordinate software and hardware development efficiently.
+
+\subsubsection{Draw.io}
+
+Draw.io (also known as diagrams.net) is employed for designing system diagrams, flowcharts, and hardware schematics. It provides a flexible, web-based interface for creating clear and structured visual representations of the project workflows.
+

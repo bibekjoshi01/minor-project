@@ -1,0 +1,23 @@
+\subsection{Hardware Tools}
+
+\subsubsection{ESP32 DevKit Microcontroller}
+
+The ESP32 DevKit is a versatile, low-cost microcontroller (MCU) from Espressif Systems, widely used for embedded and IoT applications. 
+It features a dual-core Xtensa 32-bit LX6 processor, Wi-Fi and Bluetooth connectivity, and multiple peripherals such as ADC, DAC, I2C, SPI, UART, PWM, and general-purpose GPIO pins. 
+These capabilities make it suitable for real-time signal processing, motor control, and lightweight reinforcement learning.
+
+In this project, the ESP32 DevKit serves as the primary controller, performing tasks such as real-time RSSI acquisition, servo motor control for directional antenna alignment, and execution of the reinforcement learning algorithm. 
+The firmware is developed using the Arduino IDE for rapid prototyping.
+
+
+\begin{figure}[h]
+    \vspace{1em} 
+    \centering
+    \includegraphics[width=0.45\textwidth]{images/esp32_gpio_diagram.jpg} 
+    \vspace{0.2em} 
+    \caption[ESP32 GPIO Pinout]{ESP32 DevKit Internal Architecture and GPIO Pinout}
+    \label{fig:esp32_gpio}
+    % Source below, centered
+    \vspace{0.3em} 
+    {\centering \small\itshape (Source: ESP32 Series Datasheet, Espressif Systems)\par}
+\end{figure}
