@@ -28,9 +28,9 @@ class AntennaEnvironment:
     def __init__(
         self,
         freq_ghz=2.45,
-        tx_power_dbm=20.0,
-        tx_gain_dbi=2.0,
-        distance_m=10.0,
+        tx_power_dbm=40.0,
+        tx_gain_dbi=10.5,
+        distance_m=1500.0,
         path_loss_exp=2.5,
         shadow_std_db=4.0,
         fast_fade_std_db=2.0,
@@ -60,8 +60,8 @@ class AntennaEnvironment:
         self.tx_phi = 90.0
 
         # Initial receiver direction (degrees)
-        self.theta = 90.0
-        self.phi = 90.0
+        self.tx_theta = 90.0
+        self.tx_phi = 90.0
 
         # Shadowing is slow-varying
         self.shadowing_db = np.random.normal(0, self.shadow_std)
@@ -69,61 +69,58 @@ class AntennaEnvironment:
     # ---------------------- Physics Models ----------------------
 
     def _free_space_path_loss_1m(self):
-        """Free-space path loss at 1 meter (dB)."""
-        return 32.44 + 20 * np.log10(self.freq_ghz * 1000)
+        f_mhz = self.freq_ghz * 1000
+        d_km = 0.001  # 1 m
+        return 32.44 + 20 * np.log10(f_mhz) + 20 * np.log10(d_km)
 
     def path_loss(self):
         """Log-distance path loss with shadowing."""
         pl_1m = self._free_space_path_loss_1m()
         return pl_1m + 10 * self.n * np.log10(self.distance_m / 1.0) + self.shadowing_db
 
-    def antenna_gain(self, theta, phi):
+    def antenna_gain(self, rx_theta, rx_phi):
         """Receiver antenna gain (Yagi) in dBi."""
 
-        g_linear = 10 ** (self.g_max / 10)
+        # Relative angles
+        delta_theta = rx_theta - self.tx_theta
+        delta_phi = rx_phi - self.tx_phi
 
-        main = g_linear * np.exp(
-            -0.5 * ((theta - self.tx_theta) / self.sigma_theta) ** 2
-            - 0.5 * ((phi - self.tx_phi) / self.sigma_phi) ** 2
+        main = self.g_max * np.exp(
+            -0.5 * (delta_theta / self.sigma_theta) ** 2
+            - 0.5 * (delta_phi / self.sigma_phi) ** 2
         )
 
+        # Side lobes (azimuth only)
         side1 = (
             self.side_lobe_factor
-            * g_linear
-            * np.exp(
-                -0.5 * ((theta - (self.tx_theta + 60)) / (1.8 * self.sigma_theta)) ** 2
-            )
+            * self.g_max
+            * np.exp(-0.5 * ((delta_theta + 60) / (1.8 * self.sigma_theta)) ** 2)
         )
-
         side2 = (
             self.side_lobe_factor
-            * g_linear
-            * np.exp(
-                -0.5 * ((theta - (self.tx_theta - 60)) / (1.8 * self.sigma_theta)) ** 2
-            )
+            * self.g_max
+            * np.exp(-0.5 * ((delta_phi - 60) / (1.8 * self.sigma_theta)) ** 2)
         )
 
-        total_linear = main + side1 + side2
-        gain_dbi = 10 * np.log10(total_linear)
+        return main + side1 + side2
 
-        return gain_dbi
 
     def interference(self):
         """Interference model: mostly quiet, occasional bursts."""
         if np.random.rand() < 0.05:  # 5% chance
-            return np.random.uniform(0, 6)
+            return np.random.uniform(-10, 5)
         return 0.0
 
     # ---------------------- Environment Step ----------------------
 
-    def set_orientation(self, theta, phi):
-        self.theta = np.clip(theta, 0, 180)
-        self.phi = np.clip(phi, 0, 180)
+    def set_orientation(self, rx_theta, rx_phi):
+        self.rx_theta = np.clip(rx_theta, 0, 180)
+        self.rx_phi = np.clip(rx_phi, 0, 180)
 
     def measure_rssi(self, samples=10):
-        return self._compute_rssi(self.theta, self.phi, samples)
+        return self._compute_rssi(self.rx_theta, self.rx_phi, samples)
 
-    def _compute_rssi(self, theta, phi, samples):
+    def _compute_rssi(self, rx_theta, rx_phi, samples):
         """
         Measure RSSI at given pan (theta) and tilt (phi).
         Returns averaged RSSI (dBm).
@@ -132,16 +129,16 @@ class AntennaEnvironment:
         rssi_samples = []
 
         for _ in range(samples):
+            rx_gain = self.antenna_gain(rx_theta, rx_phi)
             pl = self.path_loss()
-            gain = self.antenna_gain(theta, phi)
             fast_fade = np.random.normal(0, self.fast_fade_std)
-            noise = np.random.normal(0, self.meas_noise)
             interf = self.interference()
+            noise = np.random.normal(0, self.meas_noise)
 
             rssi = (
                 self.tx_power_dbm
                 + self.tx_gain_dbi
-                + gain
+                + rx_gain
                 - pl
                 + fast_fade
                 + interf
@@ -154,11 +151,13 @@ class AntennaEnvironment:
 
     def step(self, action): ...
 
-    def reset(self, theta=90.0, phi=90.0):
-        self.theta = theta
-        self.phi = phi
+    def reset(self, rx_theta=90.0, rx_phi=90.0):
+        self.rx_theta = rx_theta
+        self.rx_phi = rx_phi
         self.reset_shadowing()
-        return np.array([self.theta, self.phi, self.measure_rssi()], dtype=np.float32)
+        return np.array(
+            [self.rx_theta, self.rx_phi, self.measure_rssi()], dtype=np.float32
+        )
 
     # ---------------------- Drift Models ----------------------
 

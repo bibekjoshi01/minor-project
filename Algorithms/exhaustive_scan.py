@@ -19,7 +19,6 @@ class ExhaustiveScan2D:
         tilt_step=5,
         samples_per_point=10,
         settle_time=0.0,  # simulation delay in seconds (0 for sim, >0 for hardware)
-        use_median=False,
     ):
         self.env: AntennaEnvironment = env
 
@@ -31,7 +30,6 @@ class ExhaustiveScan2D:
 
         self.samples = samples_per_point
         self.settle_time = settle_time
-        self.use_median = use_median
         self.fine_step = 2
 
         self.scan_data = []  # stores dicts: {pan, tilt, rssi}
