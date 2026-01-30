@@ -95,6 +95,11 @@
         <mxCell id="IC4nF52F2MAsIKGCbVQW-31" edge="1" parent="1" source="IC4nF52F2MAsIKGCbVQW-14" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.538;entryY=-0.002;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;" target="IC4nF52F2MAsIKGCbVQW-17">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="IC4nF52F2MAsIKGCbVQW-58" connectable="0" parent="IC4nF52F2MAsIKGCbVQW-31" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=12;rounded=1;strokeColor=default;fontFamily=Helvetica;fontColor=default;fillColor=default;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;RSSI Measurement&lt;/font&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0433" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="IC4nF52F2MAsIKGCbVQW-43" edge="1" parent="1" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;startSize=8;endSize=8;curved=1;entryX=0.985;entryY=0.164;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.002;exitY=0.288;exitDx=0;exitDy=0;exitPerimeter=0;" target="IC4nF52F2MAsIKGCbVQW-37" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="-365.004" y="-21.99800000000002" as="sourcePoint" />
