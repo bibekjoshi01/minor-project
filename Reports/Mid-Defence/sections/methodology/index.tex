@@ -1,0 +1,59 @@
+\newpage
+\section{SYSTEM ARCHITECTURE}
+
+The proposed antenna alignment system is designed as a closed-loop control platform to autonomously orient a directional antenna toward a fixed transmitter, maximizing received signal strength (RSSI). The system architecture integrates hardware components, wireless signal processing, and intelligent control algorithms. It is structured to support both simulation-based development and real-world deployment on an ESP32 microcontroller.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/system_block_diagram.png}
+    \caption{High-Level System Block Diagram.}
+    \label{fig:system_block}
+\end{figure}
+
+The key functional blocks inclue:
+
+\begin{itemize}
+    \item \textbf{RSSI Measurement:} The ESP32 measures received signal strength from the transmitter at each antenna orientation. Multiple samples are taken to mitigate fading and noise.
+    
+    \item \textbf{State Encoding:} Measured RSSI, antenna pan/tilt positions, and delta RSSI values are encoded into a discrete state representation used by the RL agent or baseline algorithms.
+    
+    \item \textbf{Decision Logic:} The pre-trained Q-table or baseline method selects the next antenna movement action to maximize RSSI.
+    
+    \item \textbf{Antenna Control:} Stepper motors adjust the antenna orientation based on the selected action, constrained within mechanical limits.
+    
+    \item \textbf{Closed-Loop Feedback:} The updated orientation leads to new RSSI measurements, completing the feedback loop.
+\end{itemize}
+
+
+\subsection{Source and Receiver Configuration}
+
+The system consists of two primary nodes:
+\begin{enumerate}
+    \item \textbf{Transmitter Node:} A stationary ESP32 development board equipped with an directional antenna, continuously broadcasting packets in the 2.4~GHz ISM band. Its fixed position ensures that variations in RSSI at the receiver are due solely to changes in antenna orientation. The ESP32 firmware handles periodic packet transmission and includes basic logging for packet timing and sequence numbers to aid in analysis.
+    
+    \item \textbf{Receiver Node:} An autonomous ESP32 node equipped with a high-gain directional antenna mounted on a stepper motor. The receiver continuously measures RSSI values and updates antenna orientation based on a control algorithm (baseline or RL-based). The closed-loop design allows adaptive tracking of the optimal antenna orientation in real time.
+\end{enumerate}
+
+\subsection{Hardware Components}
+
+The hardware architecture is centered around the ESP32 microcontroller due to its:
+
+\begin{itemize}
+    \item Integrated Wi-Fi and radio interfaces suitable for 2.4~GHz communication.
+    \item Adequate processing speed to handle RL computations and real-time control.
+    \item Memory capacity (8~MB flash, 16~MB PSRAM) sufficient to store Q-tables and perform inference.
+\end{itemize}
+
+The receiver antenna is a high-gain PCB-Yagi type mounted on a stepper motor. Motor control is achieved using an A4988 driver, enabling 1.8\degree step resolution. A regulated DC supply powers the motor separately from the ESP32 to avoid electrical noise affecting RSSI measurements.
+
+\subsection{Design Considerations}
+
+\begin{itemize}
+    \item \textbf{Deterministic Alignment:} Offline RL training ensures deterministic action selection during deployment, avoiding unsafe exploration.
+    \item \textbf{Memory Efficiency:} Discretization of angles and delta RSSI ensures the Q-table fits within ESP32 flash memory without additional external storage.
+    \item \textbf{Servo Resolution and Rate:} The 1.8\degree stepper motor and ~150~ms control loop provide sufficient granularity and stability to track the optimal signal lobe.
+    \item \textbf{Baseline Comparisons:} The system supports exhaustive scan and hill-climbing algorithms for performance evaluation.
+\end{itemize}
+
+This architecture provides a **modular and scalable framework**, suitable for offline RL training, real-world deployment, and comparative evaluation against baseline algorithms. It ensures reliable and autonomous directional antenna alignment under controlled experimental conditions.
+
