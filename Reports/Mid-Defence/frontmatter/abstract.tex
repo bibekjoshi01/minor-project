@@ -10,16 +10,14 @@ This project presents the design and implementation of an autonomous antenna
 alignment system that employs reinforcement learning to optimize the orientation of
 a mechanically steerable directional antenna using real-time Received Signal
 Strength Indicator (RSSI) feedback. The proposed system consists of a transmitter
-and an intelligent receiver node equipped with an ESP32 microcontroller, a high-
-gain 2.4 GHz directional antenna, and a stepper motor for precise angular control. A
+and an intelligent receiver node equipped with an ESP32 microcontroller, a high-gain 2.4 GHz directional antenna, and a stepper motor for precise angular control. A
 lightweight tabular Q-learning RL algorithm runs directly on the embedded
-platform, enabling online learning and continuous adaptation without reliance on
-prior training data. System performance is evaluated against conventional baseline
-approaches, including fixed-orientation operation, exhaustive angular scanning, and
+platform. System performance is evaluated against conventional baseline
+approaches, including exhaustive angular scanning, and
 RSSI-based hill-climbing methods. Evaluation results are quantified using formally
 defined metrics such as convergence time, alignment accuracy, link stability,
 mechanical efficiency, and robustness to environmental disturbances. Compared to
-baseline methods, the proposed approach is expected to achieve faster convergence
+baseline methods, the proposed RL achieved faster convergence
 and reduced motor actuation while maintaining stable link quality. This work
 demonstrates the practical feasibility of embedded reinforcement learning for
 autonomous antenna alignment in low-cost wireless systems.
@@ -27,4 +25,4 @@ autonomous antenna alignment in low-cost wireless systems.
 \vspace{0.5cm}
 
 \textit{Keywords: Directional Antenna Alignment, Reinforcement Learning, RSSI
-Optimization, Embedded Systems, Adaptive Control, Wireless Communication}
+based Optimization, Embedded Systems, Adaptive Control, Wireless Communication}
