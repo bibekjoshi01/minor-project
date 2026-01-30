@@ -32,8 +32,8 @@
             <mxPoint x="1" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="IC4nF52F2MAsIKGCbVQW-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;Microcontroller (ESP32)&lt;/span&gt;" vertex="1">
-          <mxGeometry height="60" width="259" x="-336" y="210" as="geometry" />
+        <mxCell id="IC4nF52F2MAsIKGCbVQW-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="100" width="259" x="-336" y="170" as="geometry" />
         </mxCell>
         <mxCell id="IC4nF52F2MAsIKGCbVQW-11" edge="1" parent="1" source="IC4nF52F2MAsIKGCbVQW-9" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;" target="IC4nF52F2MAsIKGCbVQW-4">
           <mxGeometry relative="1" as="geometry" />
@@ -126,6 +126,12 @@
         </mxCell>
         <mxCell id="IC4nF52F2MAsIKGCbVQW-55" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontFamily=Helvetica;fontSize=12;fontColor=default;" value="&lt;font face=&quot;Times New Roman&quot;&gt;RF Signal&lt;/font&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="-482" y="-29" as="geometry" />
+        </mxCell>
+        <mxCell id="IC4nF52F2MAsIKGCbVQW-59" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font face=&quot;Times New Roman&quot;&gt;&lt;b&gt;Microcontroller (ESP32)&lt;/b&gt;&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="30" width="164.5" x="-285" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="IC4nF52F2MAsIKGCbVQW-60" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Signal Generation&lt;/font&gt;" vertex="1">
+          <mxGeometry height="36" width="190" x="-301.5" y="219" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
