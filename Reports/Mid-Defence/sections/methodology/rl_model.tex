@@ -17,11 +17,6 @@ The problem is formulated as a Markov Decision Process (MDP) comprising:
     \item \textbf{Policy:} $\pi(s)$ defines the action selection strategy. An $\epsilon$-greedy policy is employed, balancing exploration of untested orientations and exploitation of high-performing actions.
 \end{itemize}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{RL_flow_diagram.png}
-\caption{Logical flow of reinforcement learning agent for antenna alignment. The ESP32 measures RSSI, encodes state, queries Q-table, and executes actions on stepper motors.}
-\end{figure}
 
 \subsubsection{State Space Design}
 The state space represents the information available to the RL agent at each decision step. To maintain a compact representation suitable for the ESP32:
