@@ -8,16 +8,17 @@ The Arduino Integrated Development Environment (IDE) is used for programming and
 The IDE allows rapid prototyping and testing of algorithms, including RSSI acquisition and servo motor control. Additionally, it supports serial communication for debugging and real-time monitoring.
 
 
-\subsubsection{Python}
+\subsubsection{Programming Languages}
 
-Python Programming Language is used for data analysis, simulation, and reinforcement learning experiments. Libraries such as NumPy, Matplotlib, and Pandas allow signal processing, visualization of RSSI data, and testing RL policies before deployment on the microcontroller. Python also facilitates post-processing of logged data to evaluate system performance under different environmental conditions.
+\textbf{Python:} Python Programming Language is used for data analysis, simulation, and reinforcement learning experiments. Libraries such as NumPy, Matplotlib, and Pandas allow signal processing, visualization of RSSI data, and testing RL policies before deployment on the microcontroller. Python also facilitates post-processing of logged data to evaluate system performance under different environmental conditions.
 
-\subsubsection{MicroPython IDE}
+Custom Python-based simulation scripts are used to model antenna orientation, RSSI feedback, and reinforcement learning policies. Lightweight tabular reinforcement learning algorithms are evaluated offline before being translated into microcontroller-compatible logic.
 
-For experiments using MicroPython on ESP32, Thonny IDE can be employed to run and debug Python scripts directly on the microcontroller. It provides a lightweight interface for interactive development, testing algorithms in real-time, and quick iteration of code without full recompilation.
+\textbf{C/C++:} The firmware running on the ESP32 microcontroller is implemented primarily in C/C++, using the Arduino framework and PlatformIO toolchain. These languages provide low-level hardware access, deterministic execution, and efficient memory usage, which are essential for real-time RSSI sampling, servo motor control, and on-device decision-making. The use of C/C++ ensures compatibility with embedded libraries and enables deployment of lightweight reinforcement learning logic within the constrained resources of the microcontroller.
 
-\subsubsection{Simulation Tools}
-Simulink is a graphical modelling environment for designing, simulating, and analyzing dynamic systems, part of the MATLAB ecosystem, used in Model-Based Design for complex systems like communications. It is used to model the antenna orientation system, evaluate control algorithms, and simulate RSSI feedback in a controlled virtual environment. This allows verification of control strategies and RL-based methods before deployment on physical hardware.
+\subsubsection{PlatformIO}
+
+PlatformIO is used as an advanced firmware development environment for the ESP32. Built on top of Visual Studio Code, it provides robust dependency management, multi-environment builds, and improved debugging support compared to the Arduino IDE. PlatformIO enables structured project organization and simplifies integration of third-party libraries required for motor control, RSSI acquisition, and communication.
 
 \subsubsection{Version Control}
 
