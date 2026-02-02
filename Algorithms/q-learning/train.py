@@ -23,7 +23,7 @@ def train_agent(
         steps_no_improve = 0
         best_rssi = -1e9
 
-        for step in range(max_steps):
+        for _ in range(max_steps):
             action = agent.select_action(state)
             next_state, reward, done = env_wrapper.step(action)
 
@@ -57,7 +57,6 @@ def train_agent(
             print(
                 f"Episode {ep+1}/{n_episodes} | Total Reward: {total_reward:.2f} | Best RSSI: {best_rssi:.2f} | Global Best RSSI: {global_best_rssi:.2f} | ε={agent.epsilon:.3f}"
             )
-            agent.save(save_path)  # checkpoint every 50 episodes
 
     # final save
     agent.save(save_path)
