@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from rssi_sim import AntennaPattern, AntennaSimulation
 
-tx_pat = AntennaPattern(use_synthetic=True, g_max_dbi=10.5, beamwidth_deg=30.0)
-rx_pat = AntennaPattern(use_synthetic=True, g_max_dbi=10.5, beamwidth_deg=30.0)
+tx_pat = AntennaPattern(use_synthetic=True, g_max_dbi=10.5, beamwidth_deg=20.0)
+rx_pat = AntennaPattern(use_synthetic=True, g_max_dbi=10.5, beamwidth_deg=20.0)
 
 sim = AntennaSimulation(
     freq_ghz=2.45,
     tx_power_dbm=20.0,
     tx_pos=(0.0, 0.0, 1.0),
-    rx_pos=(40.0, 0.0, 1.0),  # 40 meters separation
+    rx_pos=(10.0, 0.0, 1.0),  # 40 meters separation
     tx_az_deg=0.0,
     tx_el_deg=0.0,
     rx_az_deg=180.0,

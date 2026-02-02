@@ -44,7 +44,7 @@ def angle_between_rad(v1, v2):
 # Antenna pattern helpers
 # --------------------------
 def synthetic_yagi_pattern_deg(
-    polar_angle_deg, g_max_dbi=10.5, beamwidth_deg=40.0, side_lobe_level_dbi=-12.0
+    polar_angle_deg, g_max_dbi=10.5, beamwidth_deg=40.0, side_lobe_level_dbi=-20.0
 ):
     """
     Simple synthetic Yagi-like cut (in the plane).
