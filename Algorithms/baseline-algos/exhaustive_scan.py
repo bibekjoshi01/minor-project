@@ -13,10 +13,11 @@ class ExhaustiveScan2D:
     def __init__(
         self,
         env,
-        pan_range=(30, 150),
-        tilt_range=(60, 120),
+        pan_range=(0, 360),
+        tilt_range=(60, 120),  # Assuming 90 as horizontal
         pan_step=10,
         tilt_step=5,
+        fine_step=2,
         samples_per_point=10,
         settle_time=0.0,  # simulation delay in seconds (0 for sim, >0 for hardware)
     ):
@@ -30,7 +31,7 @@ class ExhaustiveScan2D:
 
         self.samples = samples_per_point
         self.settle_time = settle_time
-        self.fine_step = 2
+        self.fine_step = fine_step
 
         self.scan_data = []  # stores dicts: {pan, tilt, rssi}
 

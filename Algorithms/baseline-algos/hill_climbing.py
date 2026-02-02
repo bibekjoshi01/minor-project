@@ -13,7 +13,7 @@ class HillClimb2D:
     def __init__(
         self,
         env,
-        pan_range=(30, 150),
+        pan_range=(0, 360),
         tilt_range=(60, 120),
         step_size=5,  # angular step
         samples_per_point=10,

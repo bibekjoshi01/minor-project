@@ -12,6 +12,7 @@ scanner = ExhaustiveScan2D(
     tilt_range=(60, 120),
     pan_step=10,
     tilt_step=5,
+    fine_step=2,
     samples_per_point=20,
     settle_time=0.0,
 )
