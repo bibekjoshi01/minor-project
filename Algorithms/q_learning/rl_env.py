@@ -2,7 +2,7 @@ import numpy as np
 
 from base import RLEnvironmentBase
 from ant_env.base import AntennaEnvironmentBase
-from base import RLConfig, delta_rssi_sign, encode_state
+from .config import RLConfig, delta_rssi_sign, encode_state
 
 
 class RLEnvironment(RLEnvironmentBase):

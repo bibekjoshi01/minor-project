@@ -1,7 +1,8 @@
 import numpy as np
 import pickle
 
-from base import RLAgentBase, RLConfig
+from .base import RLAgentBase
+from .config import RLConfig
 
 
 class QLearningAgent(RLAgentBase):
