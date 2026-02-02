@@ -6,7 +6,7 @@ env = AntennaEnvironment(distance_m=100)
 
 hc = HillClimb2D(
     env,
-    pan_range=(0, 30),
+    pan_range=(0, 360),
     tilt_range=(60, 120),
     step_size=2,
     samples_per_point=20,

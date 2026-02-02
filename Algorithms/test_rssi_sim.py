@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from rssi_sim import AntennaPattern, AntennaSimulation
+from ant_env.rssi_sim import AntennaPattern, AntennaSimulation
 
 tx_pat = AntennaPattern(use_synthetic=True, g_max_dbi=10.5, beamwidth_deg=20.0)
 rx_pat = AntennaPattern(use_synthetic=True, g_max_dbi=10.5, beamwidth_deg=20.0)

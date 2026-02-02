@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from baseline_algos.stochastic_hill_climb import StochasticHillClimb2D
-from antenna_environment import AntennaEnvironment
+from ant_env.antenna_environment import AntennaEnvironment
 
 env = AntennaEnvironment(distance_m=100)
 

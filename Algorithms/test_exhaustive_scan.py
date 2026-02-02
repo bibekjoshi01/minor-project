@@ -8,7 +8,7 @@ env = AntennaEnvironment(distance_m=100)
 
 scanner = ExhaustiveScan2D(
     env,
-    pan_range=(30, 150),
+    pan_range=(0, 360),
     tilt_range=(60, 120),
     pan_step=10,
     tilt_step=5,
