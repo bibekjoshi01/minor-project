@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from antenna_environment import AntennaEnvironment
 from baseline_algos.exhaustive_scan import ExhaustiveScan2D
+from ant_env.environment import AntennaEnvironment
 
 env = AntennaEnvironment(distance_m=100)
 

@@ -1,5 +1,5 @@
 import numpy as np
-from base import AntennaEnvironmentBase
+from ant_env.base import AntennaEnvironmentBase
 
 
 class AntennaEnvironmentSim(AntennaEnvironmentBase):

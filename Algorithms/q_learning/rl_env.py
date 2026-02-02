@@ -1,6 +1,7 @@
 import numpy as np
 
-from base import AntennaEnvironmentBase, RLEnvironmentBase
+from base import RLEnvironmentBase
+from ant_env.base import AntennaEnvironmentBase
 from base import RLConfig, delta_rssi_sign, encode_state
 
 

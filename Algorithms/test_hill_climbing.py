@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from baseline_algos.hill_climbing import HillClimb2D
-from antenna_environment import AntennaEnvironment
+from ant_env.environment import AntennaEnvironment
 
 env = AntennaEnvironment(distance_m=100)
 
