@@ -1,7 +1,7 @@
-from agent import QLearningAgent
-from rl_env import RLEnvironment
-from antenna_env import AntennaEnvironmentSim
-from train import train_agent
+from q_learning.agent import QLearningAgent
+from q_learning.rl_env import RLEnvironment
+from q_learning.antenna_env import AntennaEnvironmentSim
+from q_learning.train import train_agent
 
 antenna_env = AntennaEnvironmentSim()
 env_wrapper = RLEnvironment(antenna_env)
