@@ -12,8 +12,8 @@ RSSI is obtained from the ESP32's integrated WiFi radio, corresponding to the po
 
 RSSI measurements are inherently volatile and can fluctuate significantly even when the antenna orientation remains fixed. To ensure robust control and learning, the following techniques are applied:
 \begin{itemize}
-    \item \textbf{Short-term averaging:} Multiple consecutive RSSI readings at the same orientation are averaged to reduce random noise.
-    \item \textbf{Moving average filter:} A sliding window of recent RSSI samples is maintained to smooth out transient dips or spikes.
+    \item \textbf{Short-term averaging:} Multiple consecutive RSSI readings at the same orientation are averaged to reduce random noise
+    \item \textbf{Moving average filter:} A sliding window of recent RSSI samples is maintained to smooth out transient dips or spikes
 \end{itemize}
 
 These techniques ensure that the control algorithm and RL agent react to meaningful signal trends rather than instantaneous fluctuations.
@@ -32,11 +32,12 @@ The RL agent requires a compact representation of the environment in the form of
 \end{itemize}
 
 The resulting state vector is expressed as:
-\[
-\text{state} = (\text{azimuth\_index}, \text{tilt\_index}, \text{RSSI\_trend})
-\]
+\begin{equation}
+\mathbf{s} = \left( i_{\text{az}},\, i_{\text{tilt}},\, \Delta \mathrm{RSSI} \right)
+\label{eq:state_vector}
+\end{equation}
 This representation captures both the current antenna orientation and short-term signal behavior, enabling the RL agent to make informed alignment decisions without requiring complex channel estimation.
 
 \subsubsection{Data Logging}
 
-For debugging, performance evaluation, or offline analysis, RSSI measurements along with corresponding timestamps and antenna orientations can be logged temporarily on the ESP32 or transmitted to a host system. This facilitates visualization of signal trends and aids in parameter tuning for the RL agent.
+For debugging, performance evaluation, or offline analysis, RSSI measurements along with corresponding timestamps and antenna orientations can be logged temporarily on the MCU or transmitted to a host system. This facilitates visualization of signal trends and aids in parameter tuning for the RL agent.

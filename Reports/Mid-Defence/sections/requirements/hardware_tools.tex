@@ -1,12 +1,12 @@
 \subsection{Hardware Tools}
 
-\subsubsection{ESP32 DevKit Microcontroller}
+\subsubsection{ESP32-S3 DevKit Microcontroller}
 
-The ESP32 DevKit is a versatile, low-cost microcontroller (MCU) from Espressif Systems, widely used for embedded and IoT applications. 
+The ESP32-S3 DevKit is a versatile, low-cost microcontroller (MCU) from Espressif Systems, widely used for embedded and IoT applications. 
 It features a dual-core Xtensa 32-bit LX6 processor, Wi-Fi and Bluetooth connectivity, and multiple peripherals such as ADC, DAC, I2C, SPI, UART, PWM, and general-purpose GPIO pins. 
 These capabilities make it suitable for real-time signal processing, motor control, and lightweight reinforcement learning.
 
-In this project, the ESP32 DevKit serves as the primary controller, performing tasks such as real-time RSSI acquisition, servo motor control for directional antenna alignment, and execution of the reinforcement learning algorithm. 
+In this project, the ESP32-S3 DevKit serves as the primary controller, performing tasks such as real-time RSSI acquisition, servo motor control for directional antenna alignment, and execution of the reinforcement learning algorithm. 
 The firmware is developed using the Arduino IDE for rapid prototyping.
 
 \begin{figure}[h]
@@ -14,7 +14,7 @@ The firmware is developed using the Arduino IDE for rapid prototyping.
     \centering
     \includegraphics[width=1\textwidth]{images/esp32_block_diagram.png} 
     \vspace{0.2em}
-    \caption[ESP32 Block Diagram]{ESP32 Block Diagram}
+    \caption[ESP32-S3 Block Diagram]{ESP32-S3 Block Diagram}
     \label{fig:esp32_block_diagram}
     \vspace{0.3em} 
     {\centering \small\itshape (Source: ESP32 Series Datasheet, Espressif Systems)\par}
@@ -24,7 +24,7 @@ The firmware is developed using the Arduino IDE for rapid prototyping.
     \centering
     \includegraphics[width=1\textwidth]{images/esp32_gpio_diagram.png} 
     \vspace{0.2em}
-    \caption[ESP32 Components Description]{ESP32 Components Description}
+    \caption[ESP32-S3 Components Description]{ESP32-S3 Components Description}
     \label{fig:esp32_gpio}
     \vspace{0.3em} 
     {\centering \small\itshape (Source: ESP32 Series Datasheet, Espressif Systems)\par}
@@ -64,7 +64,7 @@ The A4988 is a complete microstepping driver designed for bipolar stepper motors
     {\centering \small\itshape (Source: Allegro Microsystems product documentation)\par}
 \end{figure}
 
-The A4988 receives step commands from the ESP32 according to the RL-based alignment algorithm, precisely rotating the stepper motors to orient the directional antenna. Its microstepping capability ensures smooth and repeatable movements, which is essential for stable and accurate RSSI-based alignment.
+The A4988 receives step commands from the ESP32-S3 according to the RL-based alignment algorithm, precisely rotating the stepper motors to orient the directional antenna. Its microstepping capability ensures smooth and repeatable movements, which is essential for stable and accurate RSSI-based alignment.
 
 
 \subsubsection{Directional Antenna}
@@ -89,15 +89,15 @@ These characteristics are ideal for RSSI-driven control and reinforcement learni
 
 \subsubsection{RF Interfacing}
 
-The directional antenna is interfaced to the receiver ESP32 through a short coaxial RF connection to ensure minimal insertion loss and impedance mismatch. The ESP32 development module exposes a u.FL (IPEX) RF connector, which is connected to the antenna via a u.FL-to-SMA pigtail cable. A short-length RG174 coaxial cable with SMA connectors is used between the pigtail and the antenna feed point to preserve signal integrity while allowing mechanical rotation of the antenna assembly.
+The directional antenna is interfaced to the receiver MCU through a short coaxial RF connection to ensure minimal insertion loss and impedance mismatch. The ESP32-S3 development module exposes a u.FL (IPEX) RF connector, which is connected to the antenna via a u.FL-to-SMA pigtail cable. A short-length RG174 coaxial cable with SMA connectors is used between the pigtail and the antenna feed point to preserve signal integrity while allowing mechanical rotation of the antenna assembly.
 
-All RF connections maintain a characteristic impedance of 50~$\Omega$, which is standard for 2.4~GHz wireless systems, thereby minimizing reflections and standing-wave losses. The use of short, flexible coaxial cabling also prevents mechanical stress on the ESP32 RF connector during antenna motion.
+All RF connections maintain a characteristic impedance of 50~$\Omega$, which is standard for 2.4~GHz wireless systems, thereby minimizing reflections and standing-wave losses. The use of short, flexible coaxial cabling also prevents mechanical stress on the ESP32-S3 RF connector during antenna motion.
 
 \subsubsection{Power Supply and Management}
 
 Reliable power delivery is critical for the stable operation of the proposed antenna alignment system, particularly due to the coexistence of high-current electromechanical loads and noise-sensitive RF and digital circuitry. To address this, a dual-rail power architecture is adopted, separating the logic supply domain from the motor actuation domain.
 
-The ESP32 microcontroller and associated low-power peripherals operate from a regulated 5V supply, while the stepper motor is powered from a higher-voltage rail to meet torque and current requirements. Electrical isolation between these domains minimizes the coupling of motor-induced current transients and switching noise into the microcontroller and RF front end, thereby preventing spurious resets and RSSI measurement corruption.
+The ESP32-S3 microcontroller and associated low-power peripherals operate from a regulated 5V supply, while the stepper motor is powered from a higher-voltage rail to meet torque and current requirements. Electrical isolation between these domains minimizes the coupling of motor-induced current transients and switching noise into the microcontroller and RF front end, thereby preventing spurious resets and RSSI measurement corruption.
 
 {\setlength{\LTpre}{18pt}
  \setlength{\LTpost}{5pt}
@@ -119,7 +119,7 @@ The ESP32 microcontroller and associated low-power peripherals operate from a re
 \hline
 \endhead
 
-ESP32 Microcontroller & 5~V (regulated) & $\leq$ 500~mA \\
+ESP32-S3 Microcontroller & 5~V (regulated) & $\leq$ 500~mA \\
 \hline
 A4988 Motor Driver & 5~V & $\leq$ 50~mA \\
 \hline
@@ -130,6 +130,6 @@ NEMA 17 Stepper Motor & 12~V & $\leq$ 1.2~A per phase \\
 }
 
 
-For bench-top testing, a regulated 12V / 3A DC power supply is used to power the stepper motor through the A4988 motor driver. A separate 5V regulated rail supplies the ESP32, either via an onboard linear regulator or an external buck converter. This configuration ensures sufficient current headroom during motor acceleration and prevents voltage sag during rapid antenna movements.
+For bench-top testing, a regulated 12V / 3A DC power supply is used to power the stepper motor through the A4988 motor driver. A separate 5V regulated rail supplies the ESP32-S3, either via an onboard linear regulator or an external buck converter. This configuration ensures sufficient current headroom during motor acceleration and prevents voltage sag during rapid antenna movements.
 
 For mobile or untethered operation, a 3S LiPo battery (nominal 11.1~V) is used as the primary energy source. The battery supplies the motor driver directly, while a high-efficiency buck regulator steps down the voltage to a stable 5V for the ESP32. Adequate decoupling capacitors are placed near both the motor driver and the microcontroller to suppress transient voltage fluctuations.
