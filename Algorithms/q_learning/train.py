@@ -1,4 +1,4 @@
-from base import RLEnvironmentBase, RLAgentBase
+from .base import RLEnvironmentBase, RLAgentBase
 import numpy as np
 
 
@@ -9,7 +9,7 @@ def train_agent(
     max_steps=100,
     patience=10,
     eps_stable=0.1,
-    save_path="q_table.pkl",
+    save_path="q_table.npy",
 ):
     """
     Trains any RL agent (inherits RLAgentBase) on the environment.
@@ -55,7 +55,9 @@ def train_agent(
 
         if (ep + 1) % 50 == 0:
             print(
-                f"Episode {ep+1}/{n_episodes} | Total Reward: {total_reward:.2f} | Best RSSI: {best_rssi:.2f} | Global Best RSSI: {global_best_rssi:.2f} | ε={agent.epsilon:.3f}"
+                f"Episode {ep+1}/{n_episodes} | Total Reward: {total_reward:.2f} |"
+                f"Best RSSI: {best_rssi:.2f} | Global Best RSSI: {global_best_rssi:.2f} |"
+                f"ε={agent.epsilon:.3f}"
             )
 
     # final save

@@ -1,6 +1,6 @@
 import numpy as np
 
-from base import RLEnvironmentBase
+from .base import RLEnvironmentBase
 from ant_env.base import AntennaEnvironmentBase
 from .config import RLConfig, delta_rssi_sign, encode_state
 
@@ -38,7 +38,7 @@ class RLEnvironment(RLEnvironmentBase):
     def step(self, action_id):
         axis, direction = RLConfig.ACTIONS[action_id]
 
-        # ----- apply action ------
+        #- apply action--
         if axis == "PAN":
             self.pan += direction * RLConfig.STEP_DEG
         elif axis == "TILT":
@@ -46,15 +46,15 @@ class RLEnvironment(RLEnvironmentBase):
         elif axis == "STAY":
             pass
 
-        # ---- enforce mechanical limits ----
+        # enforce mechanical limits
         self.pan = int(np.clip(self.pan, RLConfig.PAN_MIN, RLConfig.PAN_MAX))
         self.tilt = int(np.clip(self.tilt, RLConfig.TILT_MIN, RLConfig.TILT_MAX))
 
-        # ---- apply to system ----
+        # apply to system
         self.env.set_orientation(self.pan, self.tilt)
         rssi = self.env.measure_rssi()
 
-        # ---- reward logic ----
+        # reward logic
         delta = rssi - self.prev_rssi
         delta_sign = delta_rssi_sign(delta)
         reward = delta

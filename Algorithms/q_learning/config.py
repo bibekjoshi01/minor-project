@@ -1,6 +1,6 @@
 class RLConfig:
-    PAN_MIN = 30
-    PAN_MAX = 150
+    PAN_MIN = 0
+    PAN_MAX = 350
 
     TILT_MIN = 60
     TILT_MAX = 120

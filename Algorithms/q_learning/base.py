@@ -22,11 +22,6 @@ class RLAgentBase(ABC):
         """Save internal Q-table or model"""
         pass
 
-    @abstractmethod
-    def load(self, filepath):
-        """Load internal Q-table or model"""
-        pass
-
 
 class RLEnvironmentBase(ABC):
     @abstractmethod
