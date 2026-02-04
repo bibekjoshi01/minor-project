@@ -1,7 +1,6 @@
 import numpy as np
 import time
-
-from antenna_environment import AntennaEnvironment
+from ant_env.base import AntennaEnvironmentBase
 
 
 class ExhaustiveScan2D:
@@ -21,7 +20,7 @@ class ExhaustiveScan2D:
         samples_per_point=10,
         settle_time=0.0,  # simulation delay in seconds (0 for sim, >0 for hardware)
     ):
-        self.env: AntennaEnvironment = env
+        self.env: AntennaEnvironmentBase = env
 
         self.pan_min, self.pan_max = pan_range
         self.pan_step = pan_step

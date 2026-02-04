@@ -1,9 +1,6 @@
 import numpy as np
 import time
 
-from antenna_environment import AntennaEnvironment
-
-
 class HillClimb2D:
     """
     2D hill climbing (pan, tilt) for RSSI maximization.
@@ -22,7 +19,7 @@ class HillClimb2D:
         init_point=None,
         patience=10,  # stop if no improvement
     ):
-        self.env: AntennaEnvironment = env
+        self.env = env
 
         self.pan_min, self.pan_max = pan_range
         self.tilt_min, self.tilt_max = tilt_range

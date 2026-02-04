@@ -12,6 +12,7 @@ shc = StochasticHillClimb2D(
     samples_per_point=20,
     max_iters=200,
     patience=15,
+    settle_time=0.0,
     random_jump_prob=0.2,
     init_point=(40, 70),  
 )

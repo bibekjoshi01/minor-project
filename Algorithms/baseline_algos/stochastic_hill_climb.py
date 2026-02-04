@@ -1,6 +1,5 @@
 import numpy as np
 import time
-from antenna_environment import AntennaEnvironment
 
 
 class StochasticHillClimb2D:
@@ -22,7 +21,7 @@ class StochasticHillClimb2D:
         patience=10,
         random_jump_prob=0.1,  # probability to jump randomly
     ):
-        self.env: AntennaEnvironment = env
+        self.env = env
 
         self.pan_min, self.pan_max = pan_range
         self.tilt_min, self.tilt_max = tilt_range
@@ -119,8 +118,10 @@ from typing import Callable, Deque, Dict, List, Optional, Tuple
 Number = float
 Orient = Tuple[int, int]  # (pan, tilt)
 
+
 def clamp(x, a, b):
     return max(a, min(b, x))
+
 
 class StochasticHillClimber:
     """
@@ -192,10 +193,14 @@ class StochasticHillClimber:
     def _grid_neighbors(self, pan: int, tilt: int, step: int) -> List[Orient]:
         # 8-neighborhood (plus cardinal)
         deltas = [
-            ( step,  0), (-step,  0),
-            ( 0,  step), ( 0, -step),
-            ( step,  step), ( step, -step),
-            (-step,  step), (-step, -step),
+            (step, 0),
+            (-step, 0),
+            (0, step),
+            (0, -step),
+            (step, step),
+            (step, -step),
+            (-step, step),
+            (-step, -step),
         ]
         neigh = []
         for dp, dt in deltas:
@@ -215,10 +220,12 @@ class StochasticHillClimber:
         return random.random() < prob
 
     # ----------------- main routine -----------------
-    def run(self,
-            max_iters: int = 2000,
-            start_orient: Optional[Orient] = None,
-            do_random_start: bool = True) -> Dict:
+    def run(
+        self,
+        max_iters: int = 2000,
+        start_orient: Optional[Orient] = None,
+        do_random_start: bool = True,
+    ) -> Dict:
         """
         Returns a dict with best orientation and history.
         """
@@ -275,10 +282,16 @@ class StochasticHillClimber:
                 no_improve_counter += 1
 
             # record history
-            history.append({
-                "iter": it,
-                "pan": pan, "tilt": tilt, "rssi": current_rssi, "step": step, "temp": self.temp
-            })
+            history.append(
+                {
+                    "iter": it,
+                    "pan": pan,
+                    "tilt": tilt,
+                    "rssi": current_rssi,
+                    "step": step,
+                    "temp": self.temp,
+                }
+            )
 
             # update global best
             if current_rssi > best_rssi:
@@ -297,7 +310,10 @@ class StochasticHillClimber:
             self.temp *= self.temp_decay
 
             # reduce step size if stuck locally
-            if no_improve_counter >= self.patience_reduce_step and step > self.min_step_deg:
+            if (
+                no_improve_counter >= self.patience_reduce_step
+                and step > self.min_step_deg
+            ):
                 old_step = step
                 step = max(self.min_step_deg, step // 2)
                 no_improve_counter = 0
@@ -305,16 +321,28 @@ class StochasticHillClimber:
                     print(f"[iter {it}] reducing step {old_step} -> {step}")
 
             # random restart to escape persistent local maxima
-            if (it > 0 and it % self.restart_after == 0) or (self.iter_since_improve > 4 * self.restart_after):
+            if (it > 0 and it % self.restart_after == 0) or (
+                self.iter_since_improve > 4 * self.restart_after
+            ):
                 # guided restart near best so far or fully random
                 if random.random() < 0.7:
                     # near global best
                     rng = self.random_restart_radius
                     gp, gt = self.global_best
-                    pan = int(clamp(gp + random.randint(-rng, rng), self.pan_min, self.pan_max))
-                    tilt = int(clamp(gt + random.randint(-rng, rng), self.tilt_min, self.tilt_max))
+                    pan = int(
+                        clamp(
+                            gp + random.randint(-rng, rng), self.pan_min, self.pan_max
+                        )
+                    )
+                    tilt = int(
+                        clamp(
+                            gt + random.randint(-rng, rng), self.tilt_min, self.tilt_max
+                        )
+                    )
                     if self.verbose:
-                        print(f"[iter {it}] guided restart near global best {self.global_best} rssi={self.global_best_rssi:.2f}")
+                        print(
+                            f"[iter {it}] guided restart near global best {self.global_best} rssi={self.global_best_rssi:.2f}"
+                        )
                 else:
                     pan = random.randrange(self.pan_min, self.pan_max + 1, step)
                     tilt = random.randrange(self.tilt_min, self.tilt_max + 1, step)
@@ -328,9 +356,14 @@ class StochasticHillClimber:
                 continue
 
             # termination: if step is minimal and no improvement for long time
-            if step == self.min_step_deg and self.iter_since_improve >= 3 * self.restart_after:
+            if (
+                step == self.min_step_deg
+                and self.iter_since_improve >= 3 * self.restart_after
+            ):
                 if self.verbose:
-                    print(f"[iter {it}] no improvement for long time at min step; stopping.")
+                    print(
+                        f"[iter {it}] no improvement for long time at min step; stopping."
+                    )
                 break
 
         # make sure we return the best measured point (evaluate global_best)
@@ -339,5 +372,5 @@ class StochasticHillClimber:
         return {
             "best_orient": self.global_best,
             "best_rssi": final_best_rssi,
-            "history": history
+            "history": history,
         }
