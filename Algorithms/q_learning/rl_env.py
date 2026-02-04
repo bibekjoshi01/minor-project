@@ -6,12 +6,13 @@ from .config import RLConfig, delta_rssi_sign, encode_state
 
 
 class RLEnvironment(RLEnvironmentBase):
-    def __init__(self, antenna_env: AntennaEnvironmentBase):
+    def __init__(self, samples, antenna_env: AntennaEnvironmentBase):
         """
         antenna_env = existing AntennaEnvironment (Simulation or Real)
         """
 
         self.env = antenna_env
+        self.samples = samples
         self.prev_rssi = None
         self.pan = None
         self.tilt = None
@@ -29,7 +30,7 @@ class RLEnvironment(RLEnvironmentBase):
         )
 
         self.env.set_orientation(self.pan, self.tilt)
-        rssi = self.env.measure_rssi()
+        rssi = self.env.measure_rssi(samples=self.samples)
         self.prev_rssi = rssi
 
         state = encode_state(self.pan, self.tilt, 0)
@@ -38,7 +39,7 @@ class RLEnvironment(RLEnvironmentBase):
     def step(self, action_id):
         axis, direction = RLConfig.ACTIONS[action_id]
 
-        #- apply action--
+        # - apply action--
         if axis == "PAN":
             self.pan += direction * RLConfig.STEP_DEG
         elif axis == "TILT":
@@ -52,7 +53,7 @@ class RLEnvironment(RLEnvironmentBase):
 
         # apply to system
         self.env.set_orientation(self.pan, self.tilt)
-        rssi = self.env.measure_rssi()
+        rssi = self.env.measure_rssi(samples=self.samples)
 
         # reward logic
         delta = rssi - self.prev_rssi

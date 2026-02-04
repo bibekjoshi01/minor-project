@@ -1,108 +1,53 @@
-import pickle
-import time
-import math
+import matplotlib.pyplot as plt
+import numpy as np
 
-MODEL_PATH = "q_table.pkl"
+from q_learning.agent import QLearningTrainer
+from q_learning.rl_env import RLEnvironment
+from ant_env.environment import AntennaEnvironmentSim
+from q_learning.test import test_agent
 
-NUM_ACTIONS = 4
-RSSI_MIN = -100
-RSSI_MAX = -30
-RSSI_BINS = 8
+# Initialize environment
+antenna_env = AntennaEnvironmentSim()
+env_wrapper = RLEnvironment(
+    antenna_env=antenna_env,
+    samples=20,
+)
 
-ANGLE_MIN = 0
-ANGLE_MAX = 360
-ANGLE_BINS = 8
+# Load trained Q-table
+agent = QLearningTrainer()
+agent.Q = np.load("q_table.npy")
+agent.epsilon = 0.0  # pure exploitation
 
-STEP_DELAY_SEC = 0.1  # control loop delay
+# Run test
+log_data, path = test_agent(
+    agent,
+    env_wrapper,
+    max_steps=200,
+    samples=env_wrapper.samples,
+)
+print(log_data)
 
-STATE_SPACE_SIZE = RSSI_BINS * ANGLE_BINS
+# Plot RL path
+pan = [p["pan"] for p in path]
+tilt = [p["tilt"] for p in path]
+best_point = log_data["metrics"]["best_point"]
 
+plt.figure(figsize=(6, 6))
+plt.plot(tilt, pan, "-o", label="RL Path")
+plt.scatter(best_point["tilt"], best_point["pan"], c="red", s=100, label="Best Point")
+plt.xlabel("Tilt (deg)")
+plt.ylabel("Pan (deg)")
+plt.title("RL Q-learning Path")
+plt.legend()
+plt.grid(True)
+plt.show()
 
-# LOAD Q-TABLE (BOOT)
-def load_q_table(path):
-    with open(path, "rb") as f:
-        q_table = pickle.load(f)
-
-    if not isinstance(q_table, dict):
-        raise TypeError("Q-table must be dict")
-
-    for s, q in q_table.items():
-        if len(q) != NUM_ACTIONS:
-            raise ValueError("Action size mismatch")
-
-    print(f"[BOOT] Q-table loaded ({len(q_table)} states)")
-    return q_table
-
-
-Q_TABLE = load_q_table(MODEL_PATH)
-
-
-# STATE ENCODING (CRITICAL)
-def discretize(value, vmin, vmax, bins):
-    if value <= vmin:
-        return 0
-    if value >= vmax:
-        return bins - 1
-    return int((value - vmin) / (vmax - vmin) * bins)
-
-
-def encode_state(rssi, angle):
-    rssi_bin = discretize(rssi, RSSI_MIN, RSSI_MAX, RSSI_BINS)
-    angle_bin = discretize(angle, ANGLE_MIN, ANGLE_MAX, ANGLE_BINS)
-    return rssi_bin * ANGLE_BINS + angle_bin
-
-
-# ACTION SELECTION (GREEDY)
-def select_action(state):
-    q_values = Q_TABLE.get(state)
-
-    if q_values is None:
-        return 0  # safe fallback
-
-    best_action = 0
-    best_value = q_values[0]
-
-    for i in range(1, NUM_ACTIONS):
-        if q_values[i] > best_value:
-            best_value = q_values[i]
-            best_action = i
-
-    return best_action
-
-
-# ACTUATION (STUB)
-def execute_action(action):
-    if action == 0:
-        print("ACTION: ROTATE_CW")
-    elif action == 1:
-        print("ACTION: ROTATE_CCW")
-    elif action == 2:
-        print("ACTION: HOLD")
-    elif action == 3:
-        print("ACTION: FINE_ADJUST")
-
-
-# SENSOR INPUT (SIMULATION ONLY)
-def read_sensors():
-    rssi = -65 + 4 * math.sin(time.time())
-    angle = (time.time() * 20) % 360
-    return rssi, angle
-
-
-# MAIN LOOP
-def main():
-    print("[RUN] RL controller active")
-
-    while True:
-        rssi, angle = read_sensors()
-        state = encode_state(rssi, angle)
-        action = select_action(state)
-
-        print(f"RSSI={rssi:.1f}  ANGLE={angle:.1f}  STATE={state}  ACTION={action}")
-        execute_action(action)
-
-        time.sleep(STEP_DELAY_SEC)
-
-
-if __name__ == "__main__":
-    main()
+# RSSI convergence
+rssi_values = [p["rssi"] for p in path]
+plt.figure(figsize=(6, 4))
+plt.plot(range(len(rssi_values)), rssi_values, "-o")
+plt.xlabel("Step")
+plt.ylabel("RSSI (dBm)")
+plt.title("RL RSSI Convergence")
+plt.grid(True)
+plt.show()

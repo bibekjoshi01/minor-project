@@ -49,8 +49,8 @@ class AntennaEnvironmentSim(AntennaEnvironmentBase):
         Simulates time taken by the stepper motor to move.
         """
         # Clip angles to safe bounds
-        new_pan = int(np.clip(pan, 0, 180))
-        new_tilt = int(np.clip(tilt, 0, 180))
+        new_pan = int(np.clip(pan, 0, 250))
+        new_tilt = int(np.clip(tilt, 60, 120))
 
         # Simulate movement time (assume each step_deg takes move_time_per_step)
         pan_steps = (
