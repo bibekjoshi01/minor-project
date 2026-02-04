@@ -6,7 +6,7 @@ from .config import RLConfig, delta_rssi_sign, encode_state
 
 
 class RLEnvironment(RLEnvironmentBase):
-    def __init__(self, samples, antenna_env: AntennaEnvironmentBase):
+    def __init__(self, antenna_env: AntennaEnvironmentBase, samples=1):
         """
         antenna_env = existing AntennaEnvironment (Simulation or Real)
         """
