@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.7">
   <diagram name="Page-1" id="yDk-n_gOeVWadPg_5YEF">
-    <mxGraphModel dx="1545" dy="1118" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
+    <mxGraphModel dx="2131" dy="1085" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -164,6 +164,9 @@
         </mxCell>
         <mxCell id="LHcCp2OfhxAuUMo8Hoza-98" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Set best angle, Note RSSI value&lt;/font&gt;" vertex="1">
           <mxGeometry height="60" width="160" x="280" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="LHcCp2OfhxAuUMo8Hoza-99" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Yes&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="580" y="520" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
