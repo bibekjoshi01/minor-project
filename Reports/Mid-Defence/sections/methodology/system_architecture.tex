@@ -41,10 +41,18 @@ These modules are executed sequentially within a timed control loop, ensuring de
 
 \subsubsection{Data Flow and Control Loop}
 
-Figure~\ref{fig:system_block} represents the primary data and control flow of the system. The flow proceeds as follows:
+\begin{figure}[H]
+    \vspace{1em} 
+    \centering
+    \includegraphics[width=1\textwidth]{images/flowdiagram.png}
+    \caption{System Data Flow Diagram}
+    \label{fig:control_flow}
+\end{figure}
+
+Figure~\ref{fig:control_flow} represents the primary data and control flow of the system. The flow proceeds as follows:
 
 \begin{itemize}
-    \item The ESP32 receives wireless packets via the directional antenna and extracts the corresponding RSSI values
+    \item The MCU receives wireless packets via the directional antenna and extracts the corresponding RSSI values
     \item Filtered RSSI measurements are passed to the state encoding block along with the current antenna orientation
     \item The decision module evaluates the current state and selects an action according to the active alignment strategy
     \item The antenna control module issues step and direction commands to the motor driver
