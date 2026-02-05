@@ -1,6 +1,6 @@
 \subsection{Reinforcement Learning Implementation}
 
-This section describes the practical implementation of the reinforcement learning (RL) based antenna alignment system. The focus is on system integration, data structures, and execution flow.
+This section describes the practical implementation of the Q-Learning based antenna alignment system. The focus is on system integration, data structures, and execution flow.
 
 \subsubsection{State, Action, and Reward Representation}
 
@@ -71,7 +71,7 @@ No Q-value updates are performed on the device.
 \begin{itemize}
     \item Ensures deterministic and stable behavior
     \item Avoids divergence due to noisy RSSI measurements
-    \item Reduces computational and memory overhead on the ESP32
+    \item Reduces computational and memory overhead on the ESP32-S3
 \end{itemize}
 
 As a result, the deployed system behaves as a rule-based controller derived from offline reinforcement learning.
@@ -85,7 +85,7 @@ As a result, the deployed system behaves as a rule-based controller derived from
 \begin{figure}[H]
     \vspace{1em} 
     \centering
-    \includegraphics[width=1\textwidth]{images/flowdiagram.png}
+    \includegraphics[width=1\textwidth]{images/rl_control_flow.png}
     \caption{Control flow of the RL-based antenna alignment system}
     \label{fig:rl_flowchart}
 \end{figure}
