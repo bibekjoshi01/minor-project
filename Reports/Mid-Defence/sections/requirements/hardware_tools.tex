@@ -49,6 +49,24 @@ Stepper motors can be directly interfaced with the ESP32 via a step/direction dr
 
 The selected NEMA 17 operates at 12-24 V with a rated current of 1-2 A per phase. A regulated DC power supply ensures stable operation without introducing voltage fluctuations that could affect sensitive RSSI measurements. Stepper motors inherently provide repeatable positioning without feedback due to the discrete nature of step motion. This is critical for aligning the antenna to precise orientations corresponding to RSSI peaks.
 
+\subsubsection{Servo Motor}
+The TowerPro MG90S micro servo was selected to control the elevation (tilt) angle of the antenna. This servo provides approximately 180° of rotation with a standard positional resolution of 1° per control pulse, which is sufficient for fine-grained tilt adjustments in conjunction with the stepper-controlled azimuth.
+
+\begin{figure}[h]
+    \vspace{1em}
+    \centering
+    \includegraphics[width=1\textwidth]{images/mg90s_servo.png} 
+    \vspace{0.2em} 
+    \caption[TowerPro MG90S Micro Servo]{TowerPro MG90S Micro Servo}
+    \label{fig:mg90s_servo}
+    \vspace{0.3em} 
+    {\centering \small\itshape (Source: TowerPro MG90S Datasheet)\par}
+\end{figure}
+
+The MG90S operates on a 4.8-6 V DC supply and draws a stall current of up to 650 mA. Control is achieved via standard PWM pulses from the ESP32-S3, which allows direct positioning without additional drivers. A decoupling capacitor of 100 nF is placed across the power lines to filter inductive noise and prevent transient voltage spikes from affecting the microcontroller logic.
+
+The servo provides reliable, repeatable angular positioning necessary for maintaining precise antenna tilt angles. Its lightweight construction minimizes additional mechanical load on the rotating turret, while the integrated metal gears ensure long-term durability under continuous operation.
+
 
 \subsubsection{Motor Driver}
 The A4988 is a complete microstepping driver designed for bipolar stepper motors, providing precise and easy-to-implement motion control. It supports full, half, quarter, eighth, and sixteenth-step modes, with an output drive capacity up to 35 V and 2 A, making it suitable for controlling NEMA 17 stepper motors in embedded systems. The A4988 simplifies motor control each pulse on the STEP input moves the motor by one microstep, eliminating the need for complex phase sequencing or additional control logic.
@@ -125,7 +143,8 @@ A4988 Motor Driver & 5~V & $\leq$ 50~mA \\
 \hline
 NEMA 17 Stepper Motor & 12~V & $\leq$ 1.2~A per phase \\
 \hline
-
+MG90S Servo Motor & 5~V (regulated) & $\leq$ 250~mA \\
+\hline
 \end{longtable}
 }
 
