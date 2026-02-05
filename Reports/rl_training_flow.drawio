@@ -1,9 +1,71 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.7">
   <diagram name="Page-1" id="PQE_MogzY5ANWFcYNY9D">
-    <mxGraphModel dx="1166" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="927" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-10" edge="1" parent="1" source="VUOW9kr6iRb5JwiriUP7-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="VUOW9kr6iRb5JwiriUP7-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-1" parent="1" style="html=1;dashed=0;whiteSpace=wrap;shape=mxgraph.dfd.start" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Start&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="110" x="185" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-25" edge="1" parent="1" source="VUOW9kr6iRb5JwiriUP7-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="VUOW9kr6iRb5JwiriUP7-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Initialize Agent and Environment&lt;/font&gt;&lt;/div&gt;&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;(Q-Table)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="60" width="237.5" x="121.25" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-12" edge="1" parent="1" source="VUOW9kr6iRb5JwiriUP7-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="VUOW9kr6iRb5JwiriUP7-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Encode Next State&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="150" x="165" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-16" edge="1" parent="1" source="VUOW9kr6iRb5JwiriUP7-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VUOW9kr6iRb5JwiriUP7-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Select action&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="120" x="180" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-17" edge="1" parent="1" source="VUOW9kr6iRb5JwiriUP7-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="VUOW9kr6iRb5JwiriUP7-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Execute motor movement&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Calculate Reward&lt;/font&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="200" x="140" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-20" edge="1" parent="1" source="VUOW9kr6iRb5JwiriUP7-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="VUOW9kr6iRb5JwiriUP7-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;div&gt;&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Measure RSSI&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="40" width="200" x="140" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-21" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.006;entryY=0.582;entryDx=0;entryDy=0;entryPerimeter=0;" target="VUOW9kr6iRb5JwiriUP7-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="253" />
+            </Array>
+            <mxPoint x="470.03999999999996" y="489.9971428571428" as="sourcePoint" />
+            <mxPoint x="320" y="253" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-26" edge="1" parent="1" source="VUOW9kr6iRb5JwiriUP7-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="470" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-18" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Steps &amp;gt; threshhold&lt;/font&gt;" vertex="1">
+          <mxGeometry height="120" width="140" x="400" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;No&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="460" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-27" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Yes&lt;/font&gt;" vertex="1">
+          <mxGeometry height="30" width="60" x="460" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="VUOW9kr6iRb5JwiriUP7-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Align Antenna to Best Angle&lt;/font&gt;" vertex="1">
+          <mxGeometry height="40" width="200" x="370" y="710" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
