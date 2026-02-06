@@ -231,3 +231,9 @@ initial conditions and can recover from poor starting orientations due to its
 learned state-action policy. Once trained, the RL controller operates using
 simple table lookups, making it well-suited for deployment on resource-constrained
 embedded platforms.
+
+\subsection{Conclusion}
+
+From the simulation studies, the Reinforcement Learning (Q-learning) based alignment algorithm consistently outperformed both Exhaustive Scan and Hill Climbing in terms of convergence speed and robustness. While Exhaustive Scan guarantees global optimum detection, it requires a significantly higher number of samples and time, making it unsuitable for real-time deployment. Hill Climbing converges faster but is sensitive to the initial antenna orientation, sometimes failing to reach the global optimum. 
+
+In contrast, the RL agent achieves near-optimal RSSI values with fewer steps and demonstrates resilience to different starting positions. These results indicate that the RL-based approach is most suitable for embedded implementation, although its performance is yet to be validated on the actual hardware. Future work will focus on integrating the RL firmware with the antenna system and performing real-world experiments to confirm the simulation outcomes.
